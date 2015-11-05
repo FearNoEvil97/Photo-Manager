@@ -3,6 +3,7 @@ from tkinter import messagebox
 import fileMgr
 
 selectedFolder = ''
+listOfImages = []
 
 def chooseFolderButtonPress():
     path = ''
@@ -11,12 +12,11 @@ def chooseFolderButtonPress():
         messagebox.showwarning("No folder selected.", "You must select a folder to continue.")
         path = fileMgr.getFolderPath()
     folderLabel.config(text=path)
-    selectedFolder = path
 
 def renameButtonPress():
     newName = newNameEntryBox.get()
     inputPath = folderLabel.cget("text")
-    fileMgr.renameFiles(inputPath, newName, inputPath)
+    fileMgr.renameFiles(fileMgr.getListOfFiles(inputPath), newName, inputPath)
     messagebox.showinfo("Action Complete!", "Your photos have been renamed!")
 
 
