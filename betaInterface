@@ -1,15 +1,38 @@
 import tkinter as tk
-#import tkMessageBox
+from tkinter import messagebox
 import fileMgr
 
+selectedFolder = ''
 
 def chooseFolderButtonPress():
-    while fileMgr.getFolderPath() == "":
-        #tkMessageBox.showinfo("Say Hello", "Hello World")
+    path = ''
+    path = fileMgr.getFolderPath()
+    while path == "":
+        messagebox.showwarning("No folder selected.", "You must select a folder to continue.")
+        path = fileMgr.getFolderPath()
+    folderLabel.config(text=path)
+    selectedFolder = path
+
+def renameButtonPress():
+    newName = newNameEntryBox.get()
+    inputPath = folderLabel.cget("text")
+    fileMgr.renameFiles(inputPath, newName, inputPath)
+    messagebox.showinfo("Action Complete!", "Your photos have been renamed!")
+
 
 root = tk.Tk()
 root.title("Photo Manager")
-chooseFolderButton = tk.Button(root, text='Select Folder', width=25, command=chooseFolderButtonPress)
-chooseFolderButton.pack()
-root.mainloop()
 
+folderLabel = tk.Label(root)
+folderLabel.pack()
+
+chooseFolderButton = tk.Button(root, text='Select Folder', width=50, command=chooseFolderButtonPress)
+chooseFolderButton.pack()
+
+newNameEntryBox = tk.Entry(root)
+newNameEntryBox.pack()
+
+renameButton = tk.Button(root, text="Rename Images", width=50, command=renameButtonPress)
+renameButton.pack()
+
+root.mainloop()
