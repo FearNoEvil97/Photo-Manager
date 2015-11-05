@@ -19,11 +19,7 @@ def renameFiles(list, newName, folder):
 
 
 def getFolderPath():
-    print("Please select a folder:")
     root = tk.Tk()
     root.withdraw()
     folderPath = filedialog.askdirectory()
-    while folderPath == "":
-        print("You must select a folder. Try again.")
-        folderPath = filedialog.askdirectory()
     return folderPath

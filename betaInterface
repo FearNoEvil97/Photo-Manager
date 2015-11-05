@@ -1,0 +1,15 @@
+import tkinter as tk
+#import tkMessageBox
+import fileMgr
+
+
+def chooseFolderButtonPress():
+    while fileMgr.getFolderPath() == "":
+        #tkMessageBox.showinfo("Say Hello", "Hello World")
+
+root = tk.Tk()
+root.title("Photo Manager")
+chooseFolderButton = tk.Button(root, text='Select Folder', width=25, command=chooseFolderButtonPress)
+chooseFolderButton.pack()
+root.mainloop()
+

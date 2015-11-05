@@ -14,5 +14,4 @@ def main():
     # Print a confirmation message!
     print("The images have been renamed!")
 
-
 main()
