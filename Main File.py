@@ -7,6 +7,7 @@ folder = os.path.join('C:\\', 'Users', 'Josh', 'Desktop', 'Images')
 
 
 def main():
+    newName = input("Please input a name for your photos")
     print(folder)
     print(getListOfFiles(folder))
 
@@ -14,16 +15,6 @@ def main():
 def getListOfFiles(folderPath):
     files = sorted(os.listdir(folderPath), key=lambda x: os.path.getctime(os.path.join(folderPath, x)))
     return files
-
-
-def getTimeStamp(filePath):
-    fileStats = os.stat(filePath)
-    # return time.ctime(fileStats.st_ctime)
-    return fileStats.st_ctime
-
-
-def sortFilesByTimeStamp(fileList):
-    return sorted(fileList, key=os.path.getctime)
 
 
 main()
