@@ -12,6 +12,7 @@ def chooseFolderButtonPress():
         messagebox.showwarning("No folder selected.", "You must select a folder to continue.")
         path = fileMgr.getFolderPath()
     folderLabel.config(text=path)
+    populateListBox()
 
 def renameButtonPress():
     newName = newNameEntryBox.get()
@@ -19,12 +20,20 @@ def renameButtonPress():
     fileMgr.renameFiles(fileMgr.getListOfFiles(inputPath), newName, inputPath)
     messagebox.showinfo("Action Complete!", "Your photos have been renamed!")
 
+def populateListBox():
+    inputPath = folderLabel.cget("text")
+    listOfFiles = fileMgr.getListOfFiles(inputPath)
+    for item in listOfFiles:
+        preListBox.insert("end", item)
 
 root = tk.Tk()
 root.title("Photo Manager")
 
 folderLabel = tk.Label(root)
 folderLabel.pack()
+
+preListBox = tk.Listbox(root)
+preListBox.pack()
 
 chooseFolderButton = tk.Button(root, text='Select Folder', width=50, command=chooseFolderButtonPress)
 chooseFolderButton.pack()
